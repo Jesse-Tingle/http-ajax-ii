@@ -10,17 +10,23 @@ const auth = require("./auth")
 const db = {
   users: [
     {
-      id: "a90c0f03-28d9-4c4a-a6b5-90239fb2d674",
-      name: "Jane Doe",
-      email: "jane@doe.com",
-      password: "abc123",
+		id: "a90c0f03-28d9-4c4a-a6b5-90239fb2d674",
+		name: "Jane Doe",
+		email: "jane@doe.com",
+		password: "abc123",
     },
     {
-      id: "0bace3c4-0062-48b4-bd54-c1b7970e654e",
-      name: "John Doe",
-      email: "john@doe.com",
-      password: "abc123",
-    }
+		id: "0bace3c4-0062-48b4-bd54-c1b7970e654e",
+		name: "John Doe",
+		email: "john@doe.com",
+		password: "abc123",
+	},
+	{
+		id: "0bace3c4-0062-48b4-bd54-c1b7970e598e",
+		name: "Jesse T",
+		email: "Jesse@Tingle.com",
+		password: "abc123",
+	}
   ]
 }
 
@@ -84,9 +90,9 @@ app.post("/signin", (req, res, next) => {
 
 app.get("/me", auth.authMiddleware(), (req, res, next) => {
 	// const data = db.read()
-	const user = db.users.find((v) => v.id === req.userId)
+	const { password, ...user } = db.users.find((v) => v.id === req.userId)
 
-	delete user.password
+	// delete user.password
 
 	res.json(user)
 })

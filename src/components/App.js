@@ -7,6 +7,8 @@ import Home from "./Home"
 import Signin from "./Signin"
 import Account from "./Account"
 import Logout from "./Logout"
+import Users from './Users'
+import UserUpdate from "./UserUpdate"
 
 function App() {
 	const signedIn = getToken()
@@ -19,6 +21,7 @@ function App() {
 				{/* We can conditionally show links if logged in or not */}
 				{!signedIn && <Link to="/signin">Sign In</Link>}
 				{signedIn && <Link to="/account">My Account</Link>}
+				{signedIn && <Link to="/users">Users</Link> }
 				{signedIn && <Link to="/logout">Logout</Link>}
 			</nav>
 
@@ -26,6 +29,8 @@ function App() {
 			<Route exact path="/signin" component={Signin} />
 			{/* These routes will require an auth token to be set, due to our handy HOC */}
 			<ProtectedRoute exact path="/account" component={Account} />
+			<ProtectedRoute exact path="/users" component={Users} />
+			<ProtectedRoute exact path="/users/:id" component={UserUpdate} />
 			<ProtectedRoute exact path="/logout" component={Logout} />
 		</div>
 	)

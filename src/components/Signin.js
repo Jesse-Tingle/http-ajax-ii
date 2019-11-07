@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import api from "../utils/api"
 
 function Signin(props) {
-	const [error, setError] = useState()
+	const [error, setError] = useState('')
 	const [data, setData] = useState({
 		email: "",
 		password: "",
